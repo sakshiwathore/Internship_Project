@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Home Service</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="bg-decorations">
+        <div class="wave-bottom"></div>
+        <img src="{% static 'images/bg_icons.png' %}" class="bg-icons" style="top: 10%; right: 10%; width: 200px;"
+            alt="">
+    </div>
+
+    <div class="container">
+        <!-- Left Side -->
+        <div class="left-side">
+            <div class="logo-container">
+                <!-- Removed problematic image aspect -->
+                <h1>Home Service</h1>
+            </div>
+
+            <div class="login-title">
+                <h2>CREATE ACCOUNT</h2>
+                <p>Join us and start managing your home services today!</p>
+            </div>
+
+            <img src="{% static 'images/worker.png' %}" alt="Worker Illustration" class="worker-illustration">
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-side">
+            <div class="login-card">
+                <div class="card-header">
+                    <h3>Register</h3>
+                </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-container">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="username" placeholder="Full Name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-container">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-container">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-container">
+                            <i class="fas fa-check-circle"></i>
+                            <input type="password" name="confirm_password" id="confirm_password"
+                                placeholder="Confirm Password" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-button">Create Account</button>
+
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">Already have an account? </span>
+                        <a href="{% url 'login' %}"
+                            style="color: var(--accent-yellow); text-decoration: none; font-size: 0.9rem; font-weight: 600;">Login</a>
+                    </div>
+
+                    {% if error_message %}
+                    <div style="color: var(--error-red); text-align: center; margin-top: 1.5rem; font-size: 0.95rem;">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+
+                    {% if success_message %}
+                    <div style="color: #10b981; text-align: center; margin-top: 1.5rem; font-size: 0.95rem;">
+                        {{ success_message }}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+:root {
+    --primary-blue: #0066cc;
+    --dark-blue: #0a192f;
+    --light-blue: #1e3a8a;
+    --accent-blue: #3b82f6;
+    --accent-yellow: #ffb800;
+    /* Matching worker hat */
+    --text-white: #ffffff;
+    --text-muted: #94a3b8;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --input-bg: rgba(15, 23, 42, 0.8);
+    --error-red: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e40af 0%, #0a192f 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Decorations */
+.bg-decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bg-decorations img.bg-icons {
+    position: absolute;
+    opacity: 0.1;
+    filter: brightness(2);
+}
+
+.bg-decorations .wave-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231e40af" fill-opacity="0.5" d="M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,186.7C672,160,768,128,864,138.7C960,149,1056,203,1152,213.3C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: cover;
+    z-index: 2;
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Left Side - Illustration and Text */
+.left-side {
+    flex: 1;
+    color: var(--text-white);
+    padding-right: 50px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.logo-container img {
+    width: 120px;
+    margin-bottom: 1rem;
+}
+
+.logo-container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.login-title {
+    margin-bottom: 2rem;
+}
+
+.login-title h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.login-title p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.worker-illustration {
+    width: 100%;
+    max-width: 450px;
+    display: block;
+    margin: 0 auto;
+    /* Blending mask to remove the sharp "box" look */
+    mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));
+}
+
+/* Right Side - Login Card */
+.right-side {
+    flex: 0 0 450px;
+}
+
+.login-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-container:focus-within {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.input-container i {
+    color: var(--text-muted);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.input-container input {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--text-white) !important;
+    width: 100%;
+    outline: none !important;
+    font-size: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.input-container input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Aggressive Autofill Reset */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #0f172a inset !important;
+    -webkit-text-fill-color: var(--text-white) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.password-toggle {
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: var(--text-white);
+}
+
+.login-button {
+    width: 100%;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.error-message {
+    color: var(--error-red);
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        padding: 2rem 0;
+    }
+
+    .left-side {
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .logo-container {
+        align-items: center;
+    }
+
+    .right-side {
+        flex: 1;
+        width: 100%;
+        max-width: 450px;
+    }
+}
