@@ -18,7 +18,6 @@ if os.path.exists(".env"):
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # ============================
 # SECURITY
 # ============================
@@ -28,10 +27,19 @@ SECRET_KEY = os.environ.get(
     "django-insecure-dev-only-change-this"
 )
 
-DEBUG = True  # Set to False in production
+DEBUG = False  # Production mode
 
-ALLOWED_HOSTS = ["*"]  # Safe for Railway (domain changes dynamically)
+# Allowed hosts for Railway and local development
+ALLOWED_HOSTS = [
+    "internshipproject-production-6b28.up.railway.app",
+    "127.0.0.1",
+    "localhost",
+]
 
+# Trusted origins for CSRF protection
+CSRF_TRUSTED_ORIGINS = [
+    "https://internshipproject-production-6b28.up.railway.app",
+]
 
 # ============================
 # APPLICATION DEFINITION
@@ -69,9 +77,8 @@ ROOT_URLCONF = "homeservice_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        # Look inside BASE_DIR/templates AND app/templates
-        "DIRS": [BASE_DIR / "templates"],  
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / "templates"],  # Global templates
+        "APP_DIRS": True,                  # Also search app/templates/
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
@@ -83,7 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "homeservice_project.wsgi.application"
-
 
 # ============================
 # DATABASE
@@ -97,38 +103,25 @@ DATABASES = {
     )
 }
 
-
 # ============================
 # PASSWORD VALIDATION
 # ============================
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-
 
 # ============================
 # INTERNATIONALIZATION
 # ============================
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
 USE_TZ = True
-
 
 # ============================
 # STATIC FILES
@@ -145,13 +138,11 @@ STATICFILES_DIRS = [
 # Whitenoise for production
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
 # ============================
 # DEFAULT PRIMARY KEY
 # ============================
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 
 # ============================
 # AUTH
