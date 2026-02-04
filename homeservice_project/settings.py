@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-dev-only-change-this"
 )
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True  # Set to False in production
 
 ALLOWED_HOSTS = ["*"]  # Safe for Railway (domain changes dynamically)
 
@@ -62,10 +62,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "homeservice_project.urls"
 
+# ============================
+# TEMPLATES
+# ============================
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # Look inside BASE_DIR/templates AND app/templates
+        "DIRS": [BASE_DIR / "templates"],  
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,9 +137,13 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = (
-    "whitenoise.storage.CompressedManifestStaticFilesStorage"
-)
+# Optional: additional folders to search during development
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Whitenoise for production
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # ============================
