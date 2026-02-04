@@ -38,8 +38,10 @@ ALLOWED_HOSTS = [
 
 # Trusted origins for CSRF protection
 CSRF_TRUSTED_ORIGINS = [
-    "https://internshipproject-production-6b28.up.railway.app",
-]
+"https://internshipproject-production-6b28.up.railway.app",
+    "http://127.0.0.1:8080",  # Local dev
+    "http://localhost:8080",  # Local dev
+    ]
 
 # ============================
 # APPLICATION DEFINITION
