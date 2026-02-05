@@ -15,30 +15,22 @@
 <body>
     <div class="bg-decorations">
         <div class="wave-bottom"></div>
-        <!-- Decorative Icons from the image -->
-        <img src="{% static 'images/bg_icons.png' %}" class="bg-icons" style="top: 10%; right: 10%; width: 200px;"
-            alt="">
-        <img src="{% static 'images/bg_icons.png' %}" class="bg-icons"
-            style="bottom: 20%; left: 5%; width: 150px; opacity: 0.05;" alt="">
+        <img src="{% static 'images/bg_icons.png' %}" class="bg-icons" style="top: 10%; right: 10%; width: 200px;" alt="">
+        <img src="{% static 'images/bg_icons.png' %}" class="bg-icons" style="bottom: 20%; left: 5%; width: 150px; opacity: 0.05;" alt="">
     </div>
 
     <div class="container">
-        <!-- Left Side -->
         <div class="left-side">
             <div class="logo-container">
-                <!-- Removed problematic image text -->
                 <h1>Home Service</h1>
             </div>
-
             <div class="login-title">
                 <h2>ADMIN LOGIN</h2>
                 <p>Welcome Back! Please Sign In to Your Account</p>
             </div>
-
             <img src="{% static 'images/worker.png' %}" alt="Worker Illustration" class="worker-illustration">
         </div>
 
-        <!-- Right Side -->
         <div class="right-side">
             <div class="login-card">
                 <div class="card-header">
@@ -49,16 +41,18 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <div class="input-container">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user" aria-hidden="true"></i>
                             <input type="text" name="username" placeholder="Username or Email" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-container">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-lock" aria-hidden="true"></i>
                             <input type="password" name="password" id="password" placeholder="Password" required>
-                            <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -74,9 +68,7 @@
 
                     <div style="text-align: center; margin-top: 1.5rem;">
                         <span style="color: var(--text-muted); font-size: 0.9rem;">Don't have an account? </span>
-                        <a href="{% url 'register' %}"
-                            style="color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; font-weight: 600;">Create
-                            Account</a>
+                        <a href="{% url 'register' %}" style="color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; font-weight: 600;">Create Account</a>
                     </div>
 
                     {% if error_message %}
@@ -92,15 +84,16 @@
     <script>
         function togglePassword() {
             const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle');
+            const toggleButton = document.querySelector('.password-toggle');
+            const icon = toggleButton.querySelector('i');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
             } else {
                 passwordInput.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
             }
         }
     </script>

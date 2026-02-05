@@ -31,9 +31,9 @@ DEBUG = False  # Production mode
 
 # Allowed hosts for Railway and local development
 ALLOWED_HOSTS = [
-    "internshipproject-production-6b28.up.railway.app",
-    "127.0.0.1",
-    "localhost",
+    '127.0.0.1',
+    'localhost',
+    '.onrender.com'
 ]
 
 # Trusted origins for CSRF protection

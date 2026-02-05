@@ -15,3 +15,7 @@ staticfiles/
 
 # Environment variables
 .env
+# OS / editor
+.vscode/
+.DS_Store
+scripts/
