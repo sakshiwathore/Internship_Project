@@ -33,7 +33,7 @@ DEBUG = False  # Production mode
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '.onrender.com'
+    'internship-project-vfjo.onrender.com'
 ]
 
 # Trusted origins for CSRF protection
