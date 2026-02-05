@@ -16,12 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponse
-
 
 urlpatterns = [
-    path('', lambda request: HttpResponse("HomeService app running")),
-
     path('admin/', admin.site.urls),
-    path('', include('admin_app.urls')),
+    path('', include('admin_app.urls')),  # 🔑 THIS IS THE FIX
 ]
