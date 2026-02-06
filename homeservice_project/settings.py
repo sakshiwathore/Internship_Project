@@ -22,7 +22,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-dev-only-change-this"
 )
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -121,6 +121,12 @@ USE_TZ = True
 # ============================
 
 STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = (
